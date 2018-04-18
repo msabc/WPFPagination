@@ -4,6 +4,15 @@
              xmlns:local="clr-namespace:WpfApp2"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <!--#region Button Style-->
+        <Style TargetType="{x:Type Button}">
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Margin" Value="5 5 5 0"/>
+            <Setter Property="Width" Value="40"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="1"/>
+        </Style>
+        <!--#endregion-->
     </Application.Resources>
 </Application>
