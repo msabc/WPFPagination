@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-d:\podaci\programer10\documents\visual studio 2017\Projects\WpfApp2\WpfApp2\obj\Debug\
+C:\Users\programer10\Desktop\WPFPagination\obj\Debug\
 WpfApp2
 none
 false
 DEBUG;TRACE
-d:\podaci\programer10\documents\visual studio 2017\Projects\WpfApp2\WpfApp2\App.xaml
-22054080174
+C:\Users\programer10\Desktop\WPFPagination\App.xaml
+3-880634361
 
-7-1453051249
-13738642453
-MainWindow.xaml;PageDataGrid.xaml;
+8765711022
+191083672283
+MainWindow.xaml;PageDataGrid.xaml;PromptWindow.xaml;
 
 False
 

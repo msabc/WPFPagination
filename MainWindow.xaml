@@ -5,7 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp2"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="MainWindow" Height="350" Width="525"
+        SizeToContent="WidthAndHeight"
+        WindowStartupLocation="CenterScreen">
     <Border Padding="3" BorderThickness="3">
     <Grid>
         <local:PageDataGrid x:Name="MojPaginator"></local:PageDataGrid>

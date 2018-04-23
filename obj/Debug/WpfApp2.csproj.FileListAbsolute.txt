@@ -16,3 +16,30 @@ d:\podaci\programer10\documents\visual studio 2017\Projects\WpfApp2\WpfApp2\obj\
 d:\podaci\programer10\documents\visual studio 2017\Projects\WpfApp2\WpfApp2\obj\Debug\WpfApp2.csproj.GenerateResource.Cache
 d:\podaci\programer10\documents\visual studio 2017\Projects\WpfApp2\WpfApp2\obj\Debug\WpfApp2.exe
 d:\podaci\programer10\documents\visual studio 2017\Projects\WpfApp2\WpfApp2\obj\Debug\WpfApp2.pdb
+C:\Users\programer10\Desktop\WPFPagination\bin\Debug\WpfApp2.exe.config
+C:\Users\programer10\Desktop\WPFPagination\bin\Debug\WpfApp2.exe
+C:\Users\programer10\Desktop\WPFPagination\bin\Debug\WpfApp2.pdb
+C:\Users\programer10\Desktop\WPFPagination\obj\Debug\WpfApp2.csprojResolveAssemblyReference.cache
+C:\Users\programer10\Desktop\WPFPagination\obj\Debug\MainWindow.g.cs
+C:\Users\programer10\Desktop\WPFPagination\obj\Debug\PageDataGrid.g.cs
+C:\Users\programer10\Desktop\WPFPagination\obj\Debug\App.g.cs
+C:\Users\programer10\Desktop\WPFPagination\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\programer10\Desktop\WPFPagination\obj\Debug\WpfApp2_MarkupCompile.cache
+C:\Users\programer10\Desktop\WPFPagination\obj\Debug\WpfApp2_MarkupCompile.lref
+C:\Users\programer10\Desktop\WPFPagination\obj\Debug\App.baml
+C:\Users\programer10\Desktop\WPFPagination\obj\Debug\MainWindow.baml
+C:\Users\programer10\Desktop\WPFPagination\obj\Debug\PageDataGrid.baml
+C:\Users\programer10\Desktop\WPFPagination\obj\Debug\WpfApp2.g.resources
+C:\Users\programer10\Desktop\WPFPagination\obj\Debug\WpfApp2.Properties.Resources.resources
+C:\Users\programer10\Desktop\WPFPagination\obj\Debug\WpfApp2.csproj.GenerateResource.Cache
+C:\Users\programer10\Desktop\WPFPagination\obj\Debug\WpfApp2.exe
+C:\Users\programer10\Desktop\WPFPagination\obj\Debug\WpfApp2.pdb
+C:\Users\programer10\Desktop\WPFPagination\bin\Debug\EntityFramework.dll
+C:\Users\programer10\Desktop\WPFPagination\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\programer10\Desktop\WPFPagination\bin\Debug\MojDAL.dll
+C:\Users\programer10\Desktop\WPFPagination\bin\Debug\MojDAL.pdb
+C:\Users\programer10\Desktop\WPFPagination\bin\Debug\MojDAL.dll.config
+C:\Users\programer10\Desktop\WPFPagination\bin\Debug\EntityFramework.xml
+C:\Users\programer10\Desktop\WPFPagination\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\programer10\Desktop\WPFPagination\obj\Debug\PromptWindow.g.cs
+C:\Users\programer10\Desktop\WPFPagination\obj\Debug\PromptWindow.baml

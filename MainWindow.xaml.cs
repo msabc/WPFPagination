@@ -24,62 +24,13 @@ namespace WpfApp2
         {
             InitializeComponent();
 
-            MojPaginator.Items = new System.Collections.ObjectModel.ObservableCollection<string>()
+            using(var model = new MojDAL.Model65())
             {
-                "Bla",
-                "Bla1",
-                "Bla2",
-                "Bla",
-                "Bla1",
-                "Bla2",
-                "sadwthfhtfwaf",
-                "wefes",
-                "Bla",
-                "Bla1",
-                "Bla2",
-                "sadwthfhtfwaf",
-                "wefes",
-                "Bla",
-                "Bla1",
-                "Bla2",
-                "Bla",
-                "Blaftjgjjgj1",
-                "Bla2",
-                "Bla",
-                "Blaftjgjjgj1",
-                "Bla2",
-                "Bla",
-                "Bla1",
-                "sadwthfhtfwaf",
-                "wefes",
-                "Bla",
-                "Bla1",
-                "Bla2",
-                "Bla",
-                "Blaftjgjjgj1",
-                "Bla2",
-                "Bla2",
-                "Blgzjga",
-                "Bla1",
-                "Bla2",
-                "Blasegrdgfgdrg",
-                "Bla1",
-                "sadwthfhtfwaf",
-                "wefes",
-                "Bla",
-                "Bla1",
-                "Bla2",
-                "Bla",
-                "Blaftjgjjgj1",
-                "Bla2",
-                "Bla2",
-                "Bla",
-                "Bla1",
-                "Bla2",
-                "Bljiljiljlijljila",
-                "Bla1",
-                "Bla2",
-            };
+                MojPaginator.Items = new System.Collections.ObjectModel.ObservableCollection<object>(model.Kupac.Select(k=> new { k.Ime,k.Prezime,k.Telefon,k.Email }));
+                MojPaginator.PageSize = 40;
+            }
+
+            
         }
     }
 }

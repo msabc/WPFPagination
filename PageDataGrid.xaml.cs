@@ -21,13 +21,48 @@ namespace WpfApp2
     /// </summary>
     public partial class PageDataGrid : UserControl
     {
-        private List<string> originalData;
+        private List<object> originalData;
+        private List<object> filteredData;
+        private bool filterMode;
+        private const int NumPageButtons = 10;
+        private const int NumOfPagesOnLeft = 5;
+        private const int NumOfPagesOnRight = 4;
+        private bool forceOriginalCollection;
 
-        private int MaxPage => (originalData.Count() / PageSize) + 1;
-
-        public ObservableCollection<string> Items
+        private ICollection<object> CurrentList
         {
-            get { return (ObservableCollection<string>)GetValue(ItemsProperty); }
+            get
+            {
+                if (filterMode)
+                {
+                    return filteredData;
+                }
+                else
+                {
+                    return originalData;
+                }
+            }
+            
+        }
+
+        public int MaxPage
+        {
+            get
+            {
+                if (CurrentList.Count % PageSize != 0)
+                {
+                    return (CurrentList.Count / PageSize) + 1;
+                }
+                else
+                {
+                    return CurrentList.Count / PageSize;
+                }
+            }
+        }
+
+        public ObservableCollection<object> Items
+        {
+            get { return (ObservableCollection<object>)GetValue(ItemsProperty); }
             set
             {
                 //ova linija koda se dogada uvijek
@@ -38,12 +73,13 @@ namespace WpfApp2
                 {
                     originalData = value?.ToList();
                     CurrentPage = 1;
+                    CreateFilterMenu();
                 }
             }
         }
         // Using a DependencyProperty as the backing store for MyProperty.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty ItemsProperty =
-            DependencyProperty.Register("Items", typeof(ObservableCollection<string>), typeof(PageDataGrid), new PropertyMetadata(null));
+            DependencyProperty.Register("Items", typeof(ObservableCollection<object>), typeof(PageDataGrid), new PropertyMetadata(null));
         
         public string PageNumberInfo
         {
@@ -62,10 +98,11 @@ namespace WpfApp2
             get { return currentPage; }
             private set
             {
-                if (value != currentPage && value >= 1 && value <= MaxPage)
+                if (value != currentPage && PageExists(value))
                 {
                     currentPage = value;
                     DisplayPage();
+                    AddPageButtons();
                 }
             }
         }
@@ -74,7 +111,9 @@ namespace WpfApp2
         public int PageSize
         {
             get { return (int)GetValue(PageSizeProperty); }
-            set { SetValue(PageSizeProperty, value); }
+            set { SetValue(PageSizeProperty, value);
+                DisplayPage();
+            }
         }
 
         // Using a DependencyProperty as the backing store for PageSize.  This enables animation, styling, binding, etc...
@@ -85,22 +124,19 @@ namespace WpfApp2
 
         private void DisplayPage()
         {
-            var startingPoint = originalData.Skip(PageSize * (currentPage - 1));
+            var collection = forceOriginalCollection ? originalData : CurrentList;
+
+            var startingPoint = collection.Skip(PageSize * (currentPage - 1));
 
             if (startingPoint == null || startingPoint.Count() == 0)
             {
                 return;
             }
 
-            Items = new ObservableCollection<string>();
+            Items = new ObservableCollection<object>();
 
-            for (int i = 0; i < PageSize; i++)
+            for (int i = 0; i < PageSize && i < startingPoint.Count(); i++)
             {
-                if (i >= startingPoint.Count())
-                {
-                    break;
-                }
-
                 var element = startingPoint.ElementAt(i);
 
                 Items.Add(element);
@@ -153,6 +189,16 @@ namespace WpfApp2
         public static readonly DependencyProperty LastCmdProperty =
             DependencyProperty.Register("LastCmd", typeof(ICommand), typeof(PageDataGrid), new PropertyMetadata(null));
 
+        public ICommand ClearFiltersCmd
+        {
+            get { return (ICommand)GetValue(ClearFiltersCmdProperty); }
+            set { SetValue(ClearFiltersCmdProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for LastCmd.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty ClearFiltersCmdProperty =
+            DependencyProperty.Register("ClearFiltersCmd", typeof(ICommand), typeof(PageDataGrid), new PropertyMetadata(null));
+
         #endregion
 
 
@@ -166,7 +212,92 @@ namespace WpfApp2
             PreviousCmd = new RelayCommand(obj => CurrentPage = (CurrentPage - 1));
             NextCmd = new RelayCommand(obj => CurrentPage = (CurrentPage + 1));
             LastCmd = new RelayCommand(obj => CurrentPage = MaxPage);
+            ClearFiltersCmd = new RelayCommand(obj =>
+            {
+                if (filterMode)
+                {
+                    filterMode = false;
+                    forceOriginalCollection = true;
+                    currentPage = 2;
+                    CurrentPage = 1;
+                    forceOriginalCollection = false;
+                }
 
+            });
+        }
+
+        private bool PageExists(int page)
+        {
+            return page >= 1 && page <= MaxPage;
+        }
+
+        public void AddPageButtons()
+        {
+            PageButtons.Children.Clear();
+
+            int startPage = currentPage - NumOfPagesOnLeft;
+            int endPage = currentPage + NumOfPagesOnRight;
+
+            if (startPage < 1)
+            {
+                startPage = 1;
+                endPage = NumPageButtons;
+            }
+
+            if (endPage > MaxPage)
+            {
+                endPage = MaxPage;
+            }
+
+            if (MaxPage >= NumPageButtons && endPage - startPage != NumPageButtons - 1)
+            {
+                startPage = endPage - (NumPageButtons - 1);
+            }
+
+            for (int i = startPage; i <= endPage; i++)
+            {
+                int pageNum = i;
+                if (PageExists(pageNum))
+                {
+                    PageButtons.Children.Add(new Button
+                    {
+                        Content = pageNum.ToString(),
+                        Command = new RelayCommand(obj => CurrentPage = pageNum)
+                    });
+                }
+            }
+        }
+        
+
+        private void CreateFilterMenu()
+        {
+
+            var obj = originalData?.ElementAt(0);
+            
+            foreach (var prop in obj.GetType().GetProperties())
+            {
+                FilterMenuItem.Items.Add(new MenuItem
+                {
+                    Header = prop.Name,
+                    Command = new RelayCommand(param => 
+                    {
+                        var popup = new PromptWindow();
+                        
+                        popup.lblUnos.Content = $"Insert {prop.Name}";
+                        popup.Owner = Window.GetWindow(this);
+                        if (popup.ShowDialog()!=true)
+                        {
+                            return;
+                        }
+                        var unos = popup.txtUnos.Text;
+                        filterMode = true;
+
+                        filteredData = originalData.Where(item => Equals(prop.GetValue(item),unos)).ToList();
+                        currentPage = 2;
+                        CurrentPage = 1;
+                    })
+                });
+            }
         }
     }
 }

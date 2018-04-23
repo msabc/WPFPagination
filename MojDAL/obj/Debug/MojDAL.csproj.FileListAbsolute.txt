@@ -1,0 +1,10 @@
+C:\Users\programer10\Desktop\WPFPagination\MojDAL\bin\Debug\MojDAL.dll.config
+C:\Users\programer10\Desktop\WPFPagination\MojDAL\bin\Debug\MojDAL.dll
+C:\Users\programer10\Desktop\WPFPagination\MojDAL\bin\Debug\MojDAL.pdb
+C:\Users\programer10\Desktop\WPFPagination\MojDAL\bin\Debug\EntityFramework.dll
+C:\Users\programer10\Desktop\WPFPagination\MojDAL\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\programer10\Desktop\WPFPagination\MojDAL\bin\Debug\EntityFramework.xml
+C:\Users\programer10\Desktop\WPFPagination\MojDAL\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\programer10\Desktop\WPFPagination\MojDAL\obj\Debug\MojDAL.csprojResolveAssemblyReference.cache
+C:\Users\programer10\Desktop\WPFPagination\MojDAL\obj\Debug\MojDAL.dll
+C:\Users\programer10\Desktop\WPFPagination\MojDAL\obj\Debug\MojDAL.pdb

@@ -11,18 +11,36 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            
         </Grid.RowDefinitions>
-
+        <Menu Grid.Row="0"
+              Background="#ccc">
+            <MenuItem Header="Filter"
+                      x:Name="FilterMenuItem"
+                      FontSize="15"></MenuItem>
+            <MenuItem Header="ClearFilter"
+                      Command="{Binding ClearFiltersCmd}"></MenuItem>
+        </Menu>
         <DataGrid ItemsSource="{Binding Items}" 
                   AutoGenerateColumns="True"
-                  Grid.Row="0"/>
+                  RowHeaderWidth="0"
+                  Grid.Row="1"/>
+        <StackPanel Orientation="Horizontal"
+                    Grid.Row="2"
+                    Height="30"
+                    HorizontalAlignment="Center"
+                    x:Name="PageButtons">
+        </StackPanel>
         <StackPanel Orientation="Horizontal"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Top"
                     Height="40"
-                    Grid.Row="1">
+                    Grid.Row="3">
             <Button Content="&lt;&lt;" Command="{Binding FirstCmd}"/>
             <Button Content="&lt;" Command="{Binding PreviousCmd}"/>
+            
             <TextBlock Text="{Binding PageNumberInfo}" 
                        Margin="5 0"
                        VerticalAlignment="Center"
